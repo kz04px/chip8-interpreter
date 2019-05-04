@@ -2,6 +2,10 @@
 Just another [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) interpreter.
 
 ---
+## Screenshot
+![Example image](/images/Screenshot_2019-05-04_16-56-47.png)
+
+---
 ## Controls
     Pause      - Spacebar
     Close      - Escape
