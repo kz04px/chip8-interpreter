@@ -373,7 +373,9 @@ void Chip8::step() {
             }
             break;
     }
+}
 
+void Chip8::timers() {
     // Delay timer
     if (dt_ > 0) {
         dt_--;

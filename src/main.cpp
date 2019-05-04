@@ -23,10 +23,7 @@ int main(int argc, char **argv) {
         }
 
         while (app.run()) {
-            app.events();
-            app.step();
-            app.render();
-            app.delay();
+            app.update();
         }
     } catch (const std::bad_alloc &ex) {
         std::cerr << ex.what() << std::endl;

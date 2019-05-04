@@ -1,9 +1,16 @@
 #include "application.hpp"
 #include <cassert>
+#include <iostream>
 #include "options.hpp"
 
 Application::Application(const char *title, int w, int h)
-    : quit_(false), paused_(false), window_(title, w, h), chip8_() {
+    : quit_(false),
+      paused_(false),
+      window_(title, w, h),
+      chip8_(),
+      last_step_{clockz::now()},
+      last_timer_{clockz::now()},
+      last_render_{clockz::now()} {
 }
 
 bool Application::run() const {
@@ -37,15 +44,7 @@ void Application::step() {
         chip8_.set_key(Input::Key_V, keystate[SDL_SCANCODE_V]);
     }
 
-    if (!paused_) {
-        for (int i = 0; i < 9; ++i) {
-            chip8_.step();
-        }
-    }
-}
-
-void Application::delay() {
-    SDL_Delay(17);
+    chip8_.step();
 }
 
 void Application::events() {
@@ -109,4 +108,47 @@ void Application::render() {
     }
 
     window_.present();
+}
+
+void Application::update() {
+    const auto now = clockz::now();
+
+    events();
+
+    if (!paused_) {
+        // Keep at 500hz
+        while (last_step_ + std::chrono::milliseconds(2) <= now) {
+            step();
+            last_step_ += std::chrono::milliseconds(2);
+        }
+
+        // Keep at 60hz
+        while (last_timer_ + std::chrono::milliseconds(16) <= now) {
+            chip8_.timers();
+            last_timer_ += std::chrono::milliseconds(16);
+        }
+    } else {
+        // Update our timers while paused so that they're still accurate
+        {
+            const auto diff =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    now - last_step_);
+            last_step_ += diff;
+        }
+
+        {
+            const auto diff =
+                std::chrono::duration_cast<std::chrono::milliseconds>(
+                    now - last_timer_);
+            last_timer_ += diff;
+        }
+    }
+
+    // Keep at 60hz
+    if (last_render_ + std::chrono::milliseconds(16) <= now) {
+        render();
+        last_render_ = now;
+    }
+
+    SDL_Delay(10);
 }

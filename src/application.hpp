@@ -1,9 +1,12 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <chrono>
 #include "chip8.hpp"
 #include "options.hpp"
 #include "window.hpp"
+
+using clockz = std::chrono::high_resolution_clock;
 
 class Application {
    public:
@@ -13,13 +16,16 @@ class Application {
     void step();
     void render();
     void events();
-    void delay();
+    void update();
 
    private:
     bool quit_;
     bool paused_;
     Window window_;
     Chip8 chip8_;
+    std::chrono::time_point<clockz> last_step_;
+    std::chrono::time_point<clockz> last_timer_;
+    std::chrono::time_point<clockz> last_render_;
 };
 
 #endif

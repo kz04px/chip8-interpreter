@@ -31,6 +31,7 @@ class Chip8 {
     bool pixel(const int x, const int y) const;
     void set_key(const Input a, const bool s);
     bool get_key(const Input a) const;
+    void timers();
 
    private:
     // RAM
