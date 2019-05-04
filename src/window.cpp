@@ -49,7 +49,7 @@ void Window::clear() {
     assert(window_);
     assert(renderer_);
 
-    SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer_, 50, 50, 50, 255);
     SDL_RenderClear(renderer_);
 }
 
@@ -61,7 +61,7 @@ void Window::render(const Chip8 &chip8) {
     const int pixel_height = height_ / 32;
 
     // Draw game
-    SDL_SetRenderDrawColor(renderer_, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer_, 0, 191, 255, 255);
     for (int y = 0; y < 32; ++y) {
         for (int x = 0; x < 64; ++x) {
             const bool pixel = chip8.pixel(x, y);
