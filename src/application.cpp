@@ -130,16 +130,12 @@ void Application::update() {
     } else {
         // Update our timers while paused so that they're still accurate
         {
-            const auto diff =
-                std::chrono::duration_cast<std::chrono::milliseconds>(
-                    now - last_step_);
+            const auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_step_);
             last_step_ += diff;
         }
 
         {
-            const auto diff =
-                std::chrono::duration_cast<std::chrono::milliseconds>(
-                    now - last_timer_);
+            const auto diff = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_timer_);
             last_timer_ += diff;
         }
     }

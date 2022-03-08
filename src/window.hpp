@@ -7,12 +7,19 @@
 class Window {
    public:
     [[nodiscard]] Window(const char *title, int w, int h);
+
     ~Window();
+
     void resize(int w, int h);
+
     void clear();
+
     void render(const Chip8 &chip8);
+
     void render_inputs(const Chip8 &chip8);
+
     void present();
+
     void toggle_fullscreen();
 
    private:

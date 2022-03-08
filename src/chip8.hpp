@@ -26,11 +26,17 @@ enum Input
 class Chip8 {
    public:
     [[nodiscard]] Chip8();
+
     bool load(const char *path);
+
     void step();
+
     [[nodiscard]] bool pixel(const int x, const int y) const;
+
     void set_key(const Input a, const bool s);
+
     [[nodiscard]] bool get_key(const Input a) const;
+
     void timers();
 
    private:

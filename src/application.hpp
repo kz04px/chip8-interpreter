@@ -11,11 +11,17 @@ using clockz = std::chrono::high_resolution_clock;
 class Application {
    public:
     [[nodiscard]] Application(const char *title, int w, int h);
+
     [[nodiscard]] bool run() const;
+
     bool load_rom(const char *path);
+
     void step();
+
     void render();
+
     void events();
+
     void update();
 
    private:
