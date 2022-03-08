@@ -10,8 +10,8 @@ using clockz = std::chrono::high_resolution_clock;
 
 class Application {
    public:
-    Application(const char *title, int w, int h);
-    bool run() const;
+    [[nodiscard]] Application(const char *title, int w, int h);
+    [[nodiscard]] bool run() const;
     bool load_rom(const char *path);
     void step();
     void render();

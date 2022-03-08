@@ -6,7 +6,7 @@
 
 class Window {
    public:
-    Window(const char *title, int w, int h);
+    [[nodiscard]] Window(const char *title, int w, int h);
     ~Window();
     void resize(int w, int h);
     void clear();
