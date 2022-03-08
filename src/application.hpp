@@ -10,7 +10,7 @@ using clockz = std::chrono::high_resolution_clock;
 
 class Application {
    public:
-    [[nodiscard]] Application(const char *title, int w, int h);
+    [[nodiscard]] Application(const char *title, const int w, const int h);
 
     [[nodiscard]] bool run() const;
 

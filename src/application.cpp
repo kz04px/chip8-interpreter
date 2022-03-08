@@ -3,7 +3,7 @@
 #include <iostream>
 #include "options.hpp"
 
-Application::Application(const char *title, int w, int h)
+Application::Application(const char *title, const int w, const int h)
     : window_(title, w, h), last_step_{clockz::now()}, last_timer_{clockz::now()}, last_render_{clockz::now()} {
 }
 

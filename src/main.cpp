@@ -1,7 +1,7 @@
 #include <iostream>
 #include "application.hpp"
 
-int main(int argc, char **argv) {
+int main(const int argc, const char **argv) {
     if (argc < 2) {
         std::cout << "No path to ROM specified" << std::endl;
         return 1;
@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         Application app("Chip8", 1024, 512);
 
         // Load ROM
-        bool r = app.load_rom(argv[1]);
+        const auto r = app.load_rom(argv[1]);
         if (!r) {
             std::cerr << "Failed to load ROM " << argv[1] << std::endl;
             return 2;

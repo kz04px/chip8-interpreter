@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "options.hpp"
 
-Window::Window(const char *title, int w, int h) : width_(w), height_(h) {
+Window::Window(const char *title, const int w, const int h) : width_(w), height_(h) {
     assert(title);
 
     window_ = SDL_CreateWindow(title,
@@ -29,17 +29,13 @@ Window::~Window() {
     SDL_DestroyWindow(window_);
 }
 
-void Window::resize(int w, int h) {
+void Window::resize(const int w, const int h) {
     assert(renderer_);
 
     width_ = w;
     height_ = h;
 
-    SDL_Rect rect;
-    rect.x = 0;
-    rect.y = 0;
-    rect.w = width_;
-    rect.h = height_;
+    const auto rect = SDL_Rect(0, 0, width_, height_);
     SDL_RenderSetViewport(renderer_, &rect);
     SDL_RenderSetClipRect(renderer_, &rect);
 }
@@ -67,18 +63,11 @@ void Window::render(const Chip8 &chip8) {
 
             if (pixel == true) {
                 if (options::borders) {
-                    SDL_Rect rect;
-                    rect.x = pixel_width * x + 1;
-                    rect.y = pixel_height * y + 1;
-                    rect.w = pixel_width - 2;
-                    rect.h = pixel_height - 2;
+                    const auto rect =
+                        SDL_Rect(pixel_width * x + 1, pixel_height * y + 1, pixel_width - 2, pixel_height - 2);
                     SDL_RenderFillRect(renderer_, &rect);
                 } else {
-                    SDL_Rect rect;
-                    rect.x = pixel_width * x;
-                    rect.y = pixel_height * y;
-                    rect.w = pixel_width;
-                    rect.h = pixel_height;
+                    const auto rect = SDL_Rect(pixel_width * x, pixel_height * y, pixel_width, pixel_height);
                     SDL_RenderFillRect(renderer_, &rect);
                 }
             }
@@ -109,11 +98,7 @@ void Window::render_inputs(const Chip8 &chip8) {
             SDL_SetRenderDrawColor(renderer_, 0, 255, 0, 100);
         }
 
-        SDL_Rect rect;
-        rect.x = width * xpos;
-        rect.y = height * ypos;
-        rect.w = width - 2;
-        rect.h = height - 2;
+        const auto rect = SDL_Rect(width * xpos, height * ypos, width - 2, height - 2);
         SDL_RenderFillRect(renderer_, &rect);
     }
 }
