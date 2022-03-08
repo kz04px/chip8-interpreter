@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-enum Input
+enum class Input
 {
     Key_X = 0x0,
     Key_1 = 0x1,
