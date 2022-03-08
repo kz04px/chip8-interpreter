@@ -25,13 +25,13 @@ class Application {
     void update();
 
    private:
-    bool quit_;
-    bool paused_;
     Window window_;
     Chip8 chip8_;
     std::chrono::time_point<clockz> last_step_;
     std::chrono::time_point<clockz> last_timer_;
     std::chrono::time_point<clockz> last_render_;
+    bool quit_ = false;
+    bool paused_ = false;
 };
 
 #endif

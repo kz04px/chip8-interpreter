@@ -23,11 +23,11 @@ class Window {
     void toggle_fullscreen();
 
    private:
-    int width_;
-    int height_;
-    bool fullscreen_;
-    SDL_Window *window_;
-    SDL_Renderer *renderer_;
+    int width_ = 1024;
+    int height_ = 512;
+    bool fullscreen_ = false;
+    SDL_Window *window_ = nullptr;
+    SDL_Renderer *renderer_ = nullptr;
 };
 
 #endif

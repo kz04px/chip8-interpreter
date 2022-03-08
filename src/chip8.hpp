@@ -41,17 +41,17 @@ class Chip8 {
 
    private:
     // RAM
-    std::uint8_t ram_[4096];
+    std::uint8_t ram_[4096] = {};
     // Registers
-    std::uint8_t *v_;
-    std::uint16_t i_;
-    std::uint16_t pc_;
-    std::uint16_t sp_;
+    std::uint8_t *v_ = &ram_[0x06A0];
+    std::uint16_t i_ = 0;
+    std::uint16_t pc_ = 0x200;
+    std::uint16_t sp_ = 0x6CF;
     // Timers
-    std::uint8_t dt_;
-    std::uint8_t st_;
+    std::uint8_t dt_ = 0;
+    std::uint8_t st_ = 0;
     // Keys
-    bool keys_[16];
+    bool keys_[16] = {};
 };
 
 #endif

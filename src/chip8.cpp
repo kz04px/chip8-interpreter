@@ -22,7 +22,7 @@ const std::uint8_t fontset[80] = {
     0xF0, 0x80, 0xF0, 0x80, 0x80   // F
 };
 
-Chip8::Chip8() : ram_{}, v_{&ram_[0x06A0]}, i_{0}, pc_{0x200}, sp_{0x6CF}, dt_{0}, st_{0}, keys_{0} {
+Chip8::Chip8() {
     assert(v_);
     memcpy(ram_, fontset, 80);
 }

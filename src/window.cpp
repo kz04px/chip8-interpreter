@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include "options.hpp"
 
-Window::Window(const char *title, int w, int h) : width_(w), height_(h), fullscreen_(false) {
+Window::Window(const char *title, int w, int h) : width_(w), height_(h) {
     assert(title);
 
     window_ = SDL_CreateWindow(title,

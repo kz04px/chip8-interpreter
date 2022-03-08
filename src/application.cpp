@@ -4,13 +4,7 @@
 #include "options.hpp"
 
 Application::Application(const char *title, int w, int h)
-    : quit_(false),
-      paused_(false),
-      window_(title, w, h),
-      chip8_(),
-      last_step_{clockz::now()},
-      last_timer_{clockz::now()},
-      last_render_{clockz::now()} {
+    : window_(title, w, h), last_step_{clockz::now()}, last_timer_{clockz::now()}, last_render_{clockz::now()} {
 }
 
 bool Application::run() const {
