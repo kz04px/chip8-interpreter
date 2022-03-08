@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include <array>
 #include <cassert>
 #include <stdexcept>
 #include "options.hpp"
@@ -81,12 +82,24 @@ void Window::render_inputs(const Chip8 &chip8) {
 
     const int width = 16;
     const int height = 16;
-    // clang-format off
-    const Input order[16] = {Input::Key_1, Input::Key_2, Input::Key_3, Input::Key_4,
-                             Input::Key_Q, Input::Key_W, Input::Key_E, Input::Key_R,
-                             Input::Key_A, Input::Key_S, Input::Key_D, Input::Key_F,
-                             Input::Key_Z, Input::Key_X, Input::Key_C, Input::Key_V};
-    // clang-format on
+    const std::array<Input, 16> order = {
+        Input::Key_1,
+        Input::Key_2,
+        Input::Key_3,
+        Input::Key_4,
+        Input::Key_Q,
+        Input::Key_W,
+        Input::Key_E,
+        Input::Key_R,
+        Input::Key_A,
+        Input::Key_S,
+        Input::Key_D,
+        Input::Key_F,
+        Input::Key_Z,
+        Input::Key_X,
+        Input::Key_C,
+        Input::Key_V,
+    };
 
     for (int i = 0; i < 16; ++i) {
         const int xpos = i % 4;

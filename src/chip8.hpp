@@ -1,6 +1,7 @@
 #ifndef CHIP8_HPP_INCLUDED
 #define CHIP8_HPP_INCLUDED
 
+#include <array>
 #include <cstdint>
 
 enum class Input
@@ -41,7 +42,7 @@ class Chip8 {
 
    private:
     // RAM
-    std::uint8_t ram_[4096] = {};
+    std::array<std::uint8_t, 4096> ram_ = {};
     // Registers
     std::uint8_t *v_ = &ram_[0x06A0];
     std::uint16_t i_ = 0;
@@ -51,7 +52,7 @@ class Chip8 {
     std::uint8_t dt_ = 0;
     std::uint8_t st_ = 0;
     // Keys
-    bool keys_[16] = {};
+    std::array<bool, 16> keys_ = {};
 };
 
 #endif

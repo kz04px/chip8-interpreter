@@ -3,7 +3,7 @@
 #include <cstring>
 #include <iostream>
 
-const std::uint8_t fontset[80] = {
+const std::array<std::uint8_t, 80> fontset = {
     0xF0, 0x90, 0x90, 0x90, 0xF0,  // 0
     0x20, 0x60, 0x20, 0x20, 0x70,  // 1
     0xF0, 0x10, 0xF0, 0x80, 0xF0,  // 2
@@ -24,7 +24,7 @@ const std::uint8_t fontset[80] = {
 
 Chip8::Chip8() {
     assert(v_);
-    memcpy(ram_, fontset, 80);
+    std::copy(std::cbegin(fontset), std::cend(fontset), std::begin(ram_));
 }
 
 bool Chip8::load(const char *path) {
@@ -34,7 +34,7 @@ bool Chip8::load(const char *path) {
     if (!file) {
         return false;
     }
-    fread(ram_ + 0x200, 4096 - 0x200, 1, file);
+    fread(ram_.data() + 0x200, 4096 - 0x200, 1, file);
     fclose(file);
     return true;
 }
